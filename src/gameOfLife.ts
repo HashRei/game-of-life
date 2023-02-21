@@ -32,3 +32,47 @@ export function randomizeGrid(grid: boolean[][], randomValue: number) {
   }
   return grid;
 }
+
+export function countNeighbors(
+  grid: boolean[][],
+  xPosition: number,
+  yPosition: number
+) {
+  let count = 0;
+  let numRows = grid.length;
+  let numCols = grid[0].length;
+
+  if (xPosition - 1 >= 0) {
+    if (grid[xPosition - 1][yPosition] == true) count++;
+  }
+  if (xPosition - 1 >= 0 && yPosition - 1 >= 0) {
+    if (grid[xPosition - 1][yPosition - 1] == true) count++;
+  }
+  if (xPosition - 1 >= 0 && yPosition + 1 < numCols) {
+    if (grid[xPosition - 1][yPosition + 1] == true) count++;
+  }
+  if (yPosition - 1 >= 0) {
+    if (grid[xPosition][yPosition - 1] == true) count++;
+  }
+  if (yPosition + 1 < numCols) {
+    if (grid[xPosition][yPosition + 1] == true) count++;
+  }
+  if (xPosition + 1 < numRows) {
+    if (grid[xPosition + 1][yPosition] == true) count++;
+  }
+  if (xPosition + 1 < numRows && yPosition - 1 >= 0) {
+    if (grid[xPosition + 1][yPosition - 1] == true) count++;
+  }
+  if (xPosition + 1 < numRows && yPosition + 1 < numCols) {
+    if (grid[xPosition + 1][yPosition + 1] == true) count++;
+  }
+  return count;
+}
+
+// export function isAlive(
+//   grid: boolean[][],
+//   xPosition: number,
+//   yPosition: number
+// ) {
+//   if()
+// }
