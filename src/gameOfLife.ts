@@ -69,10 +69,46 @@ export function countNeighbors(
   return count;
 }
 
-// export function isAlive(
-//   grid: boolean[][],
-//   xPosition: number,
-//   yPosition: number
-// ) {
-//   if()
-// }
+// RULES
+// ------------
+// Any live cell with fewer than two live neighbours dies, as if caused by under-population.
+// Any live cell with two or three live neighbours lives on to the next generation.
+// Any live cell with more than three live neighbours dies, as if by overcrowding.
+// Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+// =
+// Any live cell with two or three live neighbours survives.
+// Any dead cell with three live neighbours becomes a live cell.
+// All other live cells die in the next generation. Similarly, all other dead cells stay dead.
+
+export function applyRules(
+  grid: boolean[][],
+  xPosition: number,
+  yPosition: number
+) {
+  let nextGrid: boolean[][] = [];
+  let numNeighbors = countNeighbors(grid, xPosition, yPosition);
+  if (grid[xPosition][yPosition] == true) {
+    if (numNeighbors < 2) {
+      grid[xPosition][yPosition] = false;
+    } else if (numNeighbors == 2 || numNeighbors == 3) {
+      grid[xPosition][yPosition] = true;
+    } else if (numNeighbors > 3) {
+      grid[xPosition][yPosition] = false;
+    }
+  } else if (grid[xPosition][yPosition] == false) {
+    if (numNeighbors == 3) {
+      grid[xPosition][yPosition] = true;
+    }
+  }
+  return nextGrid;
+}
+
+export function computeNextGen(grid: boolean[][]) {
+  let rows = grid.length;
+  let cols = grid[0].length;
+  for (var i = 0; i < rows; i++) {
+    for (var j = 0; j < cols; j++) {
+      applyRules(grid, i, j);
+    }
+  }
+}
