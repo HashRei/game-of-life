@@ -18,3 +18,17 @@ export function setCell(
 ) {
   grid[xPosition][yPosition] = value;
 }
+
+export function randomizeGrid(grid: boolean[][], randomValue: number) {
+  let numRows = grid.length;
+  let numCols = grid[0].length;
+
+  for (let i = 0; i < numRows; i++) {
+    grid.push(
+      Array.from(Array(numCols), () =>
+        Math.random() > randomValue ? true : false
+      )
+    );
+  }
+  return grid;
+}
