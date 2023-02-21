@@ -1,8 +1,14 @@
 {
   "name": "game-of-life",
   "version": "1.0.0",
+  "description": "Computational engine for the game of life",
   "main": "index.js",
   "license": "MIT",
+  "author": "Silvan Reigue - HashRei <hashrei@protonmail.com>  (https://https://www.hashrei.com/)",
+  "bugs": {
+    "url": "https://github.com/HashRei/game-of-life/issues"
+  },
+  "homepage": "https://github.com/HashRei/game-of-life",
   "scripts": {
     "build": "tsc",
     "start": "ts-node src/index.ts"
